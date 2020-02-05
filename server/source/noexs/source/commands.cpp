@@ -233,7 +233,7 @@ static Result _querymem_multi(Gecko::Context& ctx) {
 //0x0E
 static Result _current_pid(Gecko::Context& ctx){
     u64 pid;
-    Result rc = pmdmntGetApplicationPid(&pid);
+    Result rc = pmdmntGetApplicationProcessId(&pid);
     WRITE_CHECKED(ctx, pid);
     return rc;
 }
@@ -263,7 +263,7 @@ static Result _get_titleid(Gecko::Context& ctx){
     
     READ_CHECKED(ctx, pid);
     
-	rc = pminfoGetTitleId(&title_id, pid);
+	rc = pminfoGetProgramId(&title_id, pid);
 	if (R_FAILED(rc)) {
         title_id = 0;
 	}

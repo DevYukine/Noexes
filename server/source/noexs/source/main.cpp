@@ -8,8 +8,8 @@ extern "C" {
 
 	u32 __nx_applet_type = AppletType_None;
 
-	//#define INNER_HEAP_SIZE 0x834000 // Arbitrary heap size. 
-	#define INNER_HEAP_SIZE 0x41A000 // Reduced heap size. 
+	#define INNER_HEAP_SIZE 0x834000 // Arbitrary heap size. 
+	//#define INNER_HEAP_SIZE 0x41A000 // Reduced heap size. 
 	size_t nx_inner_heap_size = INNER_HEAP_SIZE;
 	char   nx_inner_heap[INNER_HEAP_SIZE];
 
@@ -38,37 +38,37 @@ void __appInit(void) {
 	/* Initialize services */
 	rc = smInitialize();
 	if (R_FAILED(rc)) {
-		fatalSimple(MAKERESULT(Module_Libnx, LibnxError_InitFail_SM));
+		fatalThrow(MAKERESULT(Module_Libnx, LibnxError_InitFail_SM));
 	}
 
 	rc = ldrDmntInitialize();
 	if (R_FAILED(rc)) {
-		fatalSimple(MAKERESULT(Module_Libnx, LibnxError_AlreadyInitialized));
+		fatalThrow(MAKERESULT(Module_Libnx, LibnxError_AlreadyInitialized));
 	}
 
 	rc = pmdmntInitialize();
 	if (R_FAILED(rc)) {
-		fatalSimple(MAKERESULT(Module_Libnx, LibnxError_NotInitialized));
+		fatalThrow(MAKERESULT(Module_Libnx, LibnxError_NotInitialized));
 	}
 
 	rc = socketInitialize(socketGetDefaultInitConfig());
 	if (R_FAILED(rc)) {
-		fatalSimple(MAKERESULT(Module_TCPGecko, TCPGeckoError_initfail));
+		fatalThrow(MAKERESULT(Module_TCPGecko, TCPGeckoError_initfail));
 	}
 	
 	rc= pminfoInitialize();
 	if (R_FAILED(rc)) {
-		fatalSimple(rc);
+		fatalThrow(rc);
 	}
     
     rc = fsInitialize();
     if (R_FAILED(rc)) {
-        fatalSimple(MAKERESULT(Module_Libnx, LibnxError_InitFail_FS));
+        fatalThrow(MAKERESULT(Module_Libnx, LibnxError_InitFail_FS));
     }
     
     rc = fsdevMountSdmc();
     if (R_FAILED(rc)) {
-        fatalSimple(rc); // maybe set a variable like noSd or something? It doesn't HAVE to log.
+        fatalThrow(rc); // maybe set a variable like noSd or something? It doesn't HAVE to log.
     }
 }
 

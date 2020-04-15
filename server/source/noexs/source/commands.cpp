@@ -248,8 +248,8 @@ static Result _attached_pid(Gecko::Context& ctx){
 static Result _list_pids(Gecko::Context& ctx){
     Result rc;
 	int maxpids = GECKO_BUFFER_SIZE / sizeof(u64);
-	u32 count;
-    rc = ctx.dbg.listPids((u64*)ctx.buffer, &count, maxpids);
+	u64 count;
+    rc = ctx.dbg.listPids((s32*)ctx.buffer, &count, maxpids);
     WRITE_CHECKED(ctx, count);
     WRITE_BUFFER_CHECKED(ctx, ctx.buffer, count * sizeof(u64));
     return rc;

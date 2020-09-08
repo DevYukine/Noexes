@@ -1,17 +1,19 @@
 #pragma once
 
 /* Custom Gecko Specific Error Codes */
-enum {
-    Module_TCPGecko=349
+enum
+{
+    Module_TCPGecko = 349
 };
 
-enum {
-	TCPGeckoError_initfail=1,
-	TCPGeckoError_socketfail,
-	TCPGeckoError_socketopt,
-	TCPGeckoError_bindfail,
-	TCPGeckoError_listenfail,
-	TCPGeckoError_acceptfail,
+enum
+{
+    TCPGeckoError_initfail = 1,
+    TCPGeckoError_socketfail,
+    TCPGeckoError_socketopt,
+    TCPGeckoError_bindfail,
+    TCPGeckoError_listenfail,
+    TCPGeckoError_acceptfail,
     TCPGeckoError_iofail,
     TCPGeckoError_invalid_cmd,
     TCPGeckoError_not_attached,

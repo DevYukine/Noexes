@@ -1,6 +1,7 @@
 #include "gecko.h"
 
-void Gecko::Context::reset(){
+void Gecko::Context::reset()
+{
    exit = false;
    status = Stopping;
    conn.disconnect();

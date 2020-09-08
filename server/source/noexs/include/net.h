@@ -9,24 +9,26 @@
 
 #define DISCONNECTED_FD (-1)
 
-namespace Gecko{
-    class Connection{
+namespace Gecko
+{
+    class Connection
+    {
         int sockfd; // socket file descriptor
-        public:
+    public:
         bool connect(int port = DEFAULT_LISTEN_PORT);
         bool connected();
         void disconnect();
         int read(void *buffer, int len); //recvwait
-        int read(); // get_cmd
+        int read();                      // get_cmd
         template <typename T>
-        int read(T* to){    return read(to, sizeof(T)); }
+        int read(T *to) { return read(to, sizeof(T)); }
 
         int write(const void *buffer, int len); //sendwait
         template <typename T>
-        int write(T from){    return write(&from, sizeof(T)); }
+        int write(T from) { return write(&from, sizeof(T)); }
 
-        Connection() : sockfd(DISCONNECTED_FD) {};
+        Connection() : sockfd(DISCONNECTED_FD){};
         ~Connection();
     };
 
-};
+}; // namespace Gecko

@@ -1,5 +1,6 @@
 #include <switch.h>
 #include <string.h>
+#include <stdio.h>
 #include "errors.h"
 #include "gecko.h"
 
